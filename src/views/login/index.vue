@@ -92,6 +92,11 @@ const loginReset = (formEl: FormInstance | undefined) => {
   formEl.resetFields()
 }
 </script>
+<script lang="ts">
+export default {
+  name: 'Login',
+}
+</script>
 
 <template>
   <div class="login-container">

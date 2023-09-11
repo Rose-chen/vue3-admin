@@ -3,32 +3,28 @@ interface loginFormData {
   password: string
 }
 
+//返回值公共数据
 interface respData {
-  token?: string
-  message?: string
+  code: number
+  message: string
+  ok: boolean
 }
 
-interface respLoginData {
-  code: number
-  data: respData
+interface respLoginData extends respData {
+  data: string
 }
 
 interface userInfoData {
-  userId: number
+  name: string
   avatar: string
-  username: string
-  password: string
-  desc: string
   roles: string[]
   buttons: string[]
   routes: string[]
   token: string
 }
 
-interface respUserInfoData {
-  code: number
+interface respUserInfoData extends respData {
   data?: userInfoData | null
-  message?: string
 }
 
 export type { loginFormData, respLoginData, userInfoData, respUserInfoData }

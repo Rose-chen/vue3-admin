@@ -43,9 +43,6 @@ watch(
       <Tabbar></Tabbar>
     </div>
     <div class="layout-main" :class="layoutSettingStore.fold ? 'fold' : ''">
-      <!-- <Transition name="fade">
-        <router-view></router-view>
-      </Transition> -->
       <router-view v-slot="{ Component }">
         <transition name="fade">
           <component :is="Component" :key="copmKey" />
@@ -64,7 +61,7 @@ watch(
     height: 100vh;
     color: white;
     background-color: $slider-left-color;
-    transition: all 0.3s;
+    //transition: all 0.3s;
 
     &.fold {
       width: $slider-left-min-width;

@@ -7,8 +7,9 @@ const layoutSettingStore = useLayoutSettingStore()
 const $router = useRouter()
 const $route = useRoute()
 // console.log($route.matched)
-const logout = () => {
-  userStore.logout()
+console.log('userStore', userStore)
+const logout = async () => {
+  await userStore.logout()
   $router.push({ path: '/login', query: { redirect: $route.path } })
 }
 
@@ -18,6 +19,15 @@ const changeIcon = () => {
 
 const updateRefresh = () => {
   layoutSettingStore.refresh = !layoutSettingStore.refresh
+}
+
+const fullScreen = () => {
+  const full = document.fullscreenElement
+  if (!full) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
 }
 </script>
 <template>
@@ -48,7 +58,7 @@ const updateRefresh = () => {
     </div>
     <div class="right">
       <el-button icon="Refresh" circle @click="updateRefresh" />
-      <el-button icon="FullScreen" circle />
+      <el-button icon="FullScreen" circle @click="fullScreen" />
       <el-button icon="Operation" circle />
       <img
         :src="userStore.userInfo && userStore.userInfo.avatar"
@@ -61,7 +71,7 @@ const updateRefresh = () => {
       />
       <el-dropdown>
         <span class="el-dropdown-link">
-          {{ userStore.userInfo && userStore.userInfo.username }}
+          {{ userStore.userInfo && userStore.userInfo.name }}
           <el-icon class="el-icon--right">
             <arrow-down />
           </el-icon>

@@ -7,6 +7,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
+  //loadEnv 获取各种环境下对应的变量
   const env = loadEnv(mode, process.cwd())
   console.log(env)
   return {
@@ -37,14 +38,14 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     },
-    // server: {
-    //   proxy: {
-    //     [env.VITE_APP_BASE_API]: {
-    //       target: env.VITE_SERVICE,
-    //       changeOrigin: true,
-    //       rewrite: (path) => path.replace(/^\/api/, ''),
-    //     },
-    //   },
-    // },
+    server: {
+      proxy: {
+        [env.VITE_APP_BASE_API]: {
+          target: env.VITE_SERVICE,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
+    },
   }
 })

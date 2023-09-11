@@ -52,7 +52,7 @@ export default [
   {
     url: '/api/user/info',
     method: 'get',
-    response: (request) => {
+    response: (request: any) => {
       //获取请求头携带token
       const token = request.headers.token
       // const token = 'Admin Token'
