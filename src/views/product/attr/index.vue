@@ -7,7 +7,7 @@ import useCategoryStore from '@/store/modules/category'
 const cateGoryState = useCategoryStore()
 let loading = ref(false)
 let attrList = ref([])
-let senceFlag = ref<boolean>(true) //ture为显示列表
+let senceFlag = ref<number>(0) //0为显示列表
 const inputArr = ref<any>([])
 
 let attrParam = reactive<any>({
@@ -69,12 +69,12 @@ const onAdd = () => {
     categoryId: cateGoryState.c3Id,
     categoryLevel: 3,
   })
-  senceFlag.value = false
+  senceFlag.value = 1
 }
 
 const onEdit = (row: any) => {
   Object.assign(attrParam, JSON.parse(JSON.stringify(row)))
-  senceFlag.value = false
+  senceFlag.value = 1
 }
 
 const addAttr = () => {
@@ -114,7 +114,7 @@ const saveAttr = async () => {
       type: 'success',
       message: '新增成功！',
     })
-    senceFlag.value = true
+    senceFlag.value = 0
     getAttrInfoList()
   } else {
     ElMessage({
@@ -125,14 +125,14 @@ const saveAttr = async () => {
 }
 
 const cancel = () => {
-  senceFlag.value = true
+  senceFlag.value = 0
 }
 </script>
 <template>
   <div>
-    <Category />
+    <Category :senceFlag="senceFlag" />
     <el-card style="margin-top: 15px">
-      <div v-show="senceFlag">
+      <div v-show="!senceFlag">
         <el-button
           icon="Plus"
           type="primary"
@@ -193,7 +193,7 @@ const cancel = () => {
           </el-table-column>
         </el-table>
       </div>
-      <div v-show="!senceFlag">
+      <div v-show="senceFlag">
         <el-form :inline="true">
           <el-form-item label="新增属性名称">
             <el-input

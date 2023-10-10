@@ -57,7 +57,7 @@ const changeSence = (type: number) => {
 </script>
 <template>
   <div>
-    <Category />
+    <Category :senceFlag="senceFlag" />
     <el-card style="margin-top: 15px">
       <div v-show="senceFlag === 0">
         <el-button

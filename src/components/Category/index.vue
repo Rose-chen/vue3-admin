@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
 import useCategoryStore from '@/store/modules/category'
-
+const props = defineProps(['senceFlag'])
 const categoryState = useCategoryStore()
 
 onMounted(() => {
@@ -28,7 +28,11 @@ onBeforeUnmount(() => {
   <el-card>
     <el-form :inline="true">
       <el-form-item label="一级分类">
-        <el-select v-model="categoryState.c1Id" @change="getCategory2List">
+        <el-select
+          v-model="categoryState.c1Id"
+          :disabled="props.senceFlag"
+          @change="getCategory2List"
+        >
           <el-option
             v-for="(item, i) in categoryState.c1List"
             :key="i"
@@ -40,7 +44,7 @@ onBeforeUnmount(() => {
       <el-form-item label="二级分类">
         <el-select
           v-model="categoryState.c2Id"
-          :disabled="!categoryState.c1Id"
+          :disabled="!categoryState.c1Id || props.senceFlag"
           @change="getCategory3List"
         >
           <el-option
@@ -52,7 +56,10 @@ onBeforeUnmount(() => {
         </el-select>
       </el-form-item>
       <el-form-item label="三级分类">
-        <el-select v-model="categoryState.c3Id" :disabled="!categoryState.c2Id">
+        <el-select
+          v-model="categoryState.c3Id"
+          :disabled="!categoryState.c2Id || props.senceFlag"
+        >
           <el-option
             v-for="(item, i) in categoryState.c3List"
             :key="i"
