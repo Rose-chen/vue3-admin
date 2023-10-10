@@ -99,40 +99,75 @@ export default {
 </script>
 
 <template>
-  <div class="login-container">
-    <el-row :gutter="20">
-      <el-col :span="8"></el-col>
-      <el-col :span="8">
+  <div class="login_container">
+    <el-row>
+      <el-col :span="12"></el-col>
+      <el-col :span="12">
         <el-form
           ref="ruleFormRef"
           :model="ruleForm"
           :rules="rules"
-          label-width="120px"
-          class="demo-ruleForm"
-          :size="formSize"
+          class="login_form"
           status-icon
         >
-          <el-form-item label="用户名" prop="username">
-            <el-input v-model="ruleForm.username" />
+          <h1>Hello</h1>
+          <h2>欢迎来到硅谷甄选</h2>
+          <el-form-item label="" prop="username">
+            <el-input prefix-icon="User" v-model="ruleForm.username" />
           </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input v-model="ruleForm.password" type="password" />
+          <el-form-item label="" prop="password">
+            <el-input
+              prefix-icon="Lock"
+              v-model="ruleForm.password"
+              type="password"
+            />
           </el-form-item>
           <el-form-item>
             <el-button
               type="primary"
               :loading="loading"
+              class="login_btn"
               @click="loginSubmit(ruleFormRef)"
             >
-              Create
+              登录
             </el-button>
-            <el-button @click="loginReset(ruleFormRef)">Reset</el-button>
+            <!-- <el-button @click="loginReset(ruleFormRef)">重置</el-button> -->
           </el-form-item>
         </el-form>
       </el-col>
-      <el-col :span="8"></el-col>
     </el-row>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped lang="scss">
+.login_container {
+  width: 100%;
+  height: 100vh;
+  background: url('@/assets/images/background.jpg') no-repeat;
+  background-size: cover;
+
+  .login_form {
+    position: relative;
+    width: 80%;
+    top: 30vh;
+    background: url('@/assets/images/login_form.png') no-repeat;
+    background-size: cover;
+    padding: 40px;
+
+    h1 {
+      color: white;
+      font-size: 40px;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: white;
+      margin: 20px 0px;
+    }
+
+    .login_btn {
+      width: 100%;
+    }
+  }
+}
+</style>

@@ -42,8 +42,14 @@ export default defineConfig(({ command, mode }) => {
       proxy: {
         [env.VITE_APP_BASE_API]: {
           target: env.VITE_SERVICE,
+          // target: 'https://adminlearn.reiko.fun/prod_api',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+        [env.VITE_APP_BASE_ADMIN_API]: {
+          target: env.VITE_ADMIN_SERVICE,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/admin-api/, ''),
         },
       },
     },

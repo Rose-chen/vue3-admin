@@ -81,7 +81,7 @@ watch(
     left: $slider-left-width;
     width: calc(100% - $slider-left-width);
     height: $slider-bar-height;
-    background-color: rgb(196, 231, 255);
+    //background-color: rgb(196, 231, 255);
     transition: all 0.3s;
 
     &.fold {
@@ -97,8 +97,9 @@ watch(
     width: calc(100% - $slider-left-width);
     height: calc(100vh - $slider-bar-height);
     padding: 15px;
-    background-color: rgb(238, 251, 255);
+    //background-color: rgb(238, 251, 255);
     transition: all 0.3s;
+    overflow-y: auto;
 
     &.fold {
       left: $slider-left-min-width;
@@ -106,19 +107,24 @@ watch(
     }
 
     & > div {
-      height: 100%;
-      background: rgba(133, 196, 255, 0.342);
+      // height: 100%;
+      //background: rgba(133, 196, 255, 0.342);
+      // overflow-y: auto;
     }
   }
 }
 
-// .fade-enter-active,
-// .fade-leave-active {
-//   transition: transform 0.3s;
-// }
+.fade-enter-from {
+  opacity: 0;
+  transform: scale(0);
+}
 
-// .fade-enter-from,
-// .fade-leave-to {
-//   transform: scale(0);
-// }
+.fade-enter-active {
+  transition: all 0.3s;
+}
+
+.fade-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
 </style>
